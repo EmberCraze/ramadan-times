@@ -52,22 +52,25 @@
       .prayer-table {
         width: 100%;
         border-collapse: separate;
-        border-spacing: 2px;
+        border-spacing: 1.5px;
         margin-bottom: 30px;
       }
 
       .prayer-table th,
       .prayer-table td {
         text-align: center;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        padding: 6px 4px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
         background-color: #ffffff;
+        position: relative;
+        overflow: hidden;
       }
 
       .prayer-table th {
         background-color: #f8f9fa !important;
         font-weight: bold;
+        white-space: nowrap;
       }
 
       .asr-time {
@@ -136,15 +139,16 @@
 
         .prayer-table {
           page-break-inside: avoid;
+          border-spacing: 1.5px !important;
         }
 
         .prayer-table th,
         .prayer-table td {
-          border: 1px solid #ccc !important;
-          padding: 6px !important;
+          border: 1px solid #ddd !important;
+          padding: 6px 4px !important;
           font-size: 9pt !important;
           line-height: 1.2 !important;
-          border-radius: 5px !important;
+          border-radius: 4px !important;
         }
 
         .header-image {
@@ -179,6 +183,11 @@
 
         .page {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .prayer-table th,
+        .prayer-table td {
+          font-size: 10pt;
         }
       }
     </style>
