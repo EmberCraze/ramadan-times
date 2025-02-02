@@ -1,0 +1,119 @@
+/* Reset and general styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Page layout */
+.page {
+  width: 297mm;
+  height: 210mm;
+  margin: 20px auto;
+  background: white;
+  padding: 10mm 8mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.page__header-image {
+  width: 51%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Table styles */
+.table-grid {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.table-grid__half {
+  flex: 1;
+  min-width: 300px;
+}
+
+.prayer-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 1.5px;
+}
+
+.prayer-table__cell {
+  text-align: center;
+  padding: 4px 3px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  font-size: 10pt;
+  line-height: 1.2;
+}
+
+.prayer-table__header {
+  background-color: #f8f9fa !important;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.prayer-table__cell--asr {
+  background-color: #e6f3ff !important;
+}
+
+.prayer-table__cell--maghreb {
+  background-color: #ffe6e6 !important;
+}
+
+.prayer-table__cell--day {
+  background-color: #f0f8ff !important;
+}
+
+.prayer-table__cell--special {
+  background-color: #fff0f0 !important;
+}
+
+/* Footer styles */
+.footer {
+  margin-top: auto;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200/120;
+}
+
+.footer__mosque-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.footer__zakat-image {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100px;
+  height: auto;
+}
+
+/* Screen-only styles */
+@media screen {
+  body {
+    background: #f0f0f0;
+    padding: 20px;
+  }
+
+  .page {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+}

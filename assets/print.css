@@ -1,0 +1,51 @@
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+html,
+body {
+  width: 297mm;
+  height: 210mm;
+  margin: 0;
+  padding: 0;
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+.page {
+  margin: 0;
+  padding: 10mm 8mm;
+  width: 297mm;
+  height: 210mm;
+  page-break-after: always;
+}
+
+.prayer-table {
+  page-break-inside: avoid;
+  border-spacing: 1.5px !important;
+}
+
+.prayer-table__cell {
+  border: 1px solid #ddd !important;
+  padding: 4px 3px !important;
+  font-size: 10pt !important;
+  line-height: 1.2 !important;
+  border-radius: 4px !important;
+}
+
+.footer {
+  aspect-ratio: 1200/120 !important;
+}
+
+.footer__zakat-image {
+  max-width: 100px !important;
+}
+
+/* Ensure backgrounds print */
+.prayer-table__cell--asr,
+.prayer-table__cell--maghreb,
+.prayer-table__cell--day,
+.prayer-table__cell--special {
+  -webkit-print-color-adjust: exact !important;
+}
