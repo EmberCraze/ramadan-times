@@ -10,6 +10,8 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
       }
 
       body {
@@ -17,10 +19,9 @@
         background-color: #ffffff;
       }
 
-      /* Page layout for screen */
+      /* Page layout */
       .page {
-        width: 100%;
-        max-width: 297mm;
+        width: 297mm;
         min-height: 210mm;
         margin: 20px auto;
         background: white;
@@ -35,29 +36,38 @@
         display: block;
       }
 
+      /* Table styles */
+      .table-container {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+
+      .table-half {
+        flex: 1;
+        min-width: 300px;
+      }
+
       .prayer-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 2px;
-        margin-bottom: 15px;
-        font-size: 11px;
+        margin-bottom: 30px;
       }
 
       .prayer-table th,
       .prayer-table td {
         text-align: center;
-        padding: 4px;
+        padding: 8px;
         border: 1px solid #ccc;
-        border-radius: 3px;
+        border-radius: 5px;
+        background-color: #ffffff;
       }
 
       .prayer-table th {
-        background-color: #f8f9fa;
+        background-color: #f8f9fa !important;
         font-weight: bold;
-      }
-
-      .prayer-table td {
-        background-color: white;
       }
 
       .asr-time {
@@ -78,8 +88,10 @@
 
       .footer-image {
         width: 100%;
+        max-width: 1200px;
+        margin-top: 20px;
+        text-align: center;
         position: relative;
-        margin-top: 15px;
       }
 
       .footer-image img.mosque {
@@ -89,22 +101,12 @@
       }
 
       .footer-image img.zakat {
-        max-width: 150px;
+        max-width: 200px;
         height: auto;
         position: absolute;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-      }
-
-      .table-container {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 15px;
-      }
-
-      .table-half {
-        flex: 1;
       }
 
       /* Print styles */
@@ -114,11 +116,14 @@
           margin: 0;
         }
 
+        html,
         body {
           width: 297mm;
           height: 210mm;
           margin: 0;
           padding: 0;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
         }
 
         .page {
@@ -129,27 +134,39 @@
           page-break-after: always;
         }
 
-        .header-image {
-          max-width: 300px;
-          margin-bottom: 15px;
-        }
-
         .prayer-table {
-          font-size: 9pt;
-          margin-bottom: 10px;
+          page-break-inside: avoid;
         }
 
         .prayer-table th,
         .prayer-table td {
-          padding: 3px;
+          border: 1px solid #ccc !important;
+          padding: 6px !important;
+          font-size: 9pt !important;
+          line-height: 1.2 !important;
+          border-radius: 5px !important;
         }
 
-        .footer-image {
-          margin-top: 10px;
+        .header-image {
+          max-width: 300px;
         }
 
         .footer-image img.zakat {
-          max-width: 120px;
+          max-width: 150px;
+        }
+
+        /* Ensure backgrounds print */
+        .asr-time {
+          -webkit-print-color-adjust: exact !important;
+        }
+        .maghreb-time {
+          -webkit-print-color-adjust: exact !important;
+        }
+        .day-number {
+          -webkit-print-color-adjust: exact !important;
+        }
+        .special-day {
+          -webkit-print-color-adjust: exact !important;
         }
       }
 
