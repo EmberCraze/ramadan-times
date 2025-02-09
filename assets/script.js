@@ -37,9 +37,8 @@ async function fetchRamadanTimes(
         // Helper function to clean time string (remove timezone)
         const cleanTime = (timeStr) => timeStr.split(" ")[0];
 
-        // Check if this day is special (has holidays)
-        const isSpecialDay =
-          day.date.hijri.holidays && day.date.hijri.holidays.length > 0;
+        // Check if this day is Friday
+        const isFriday = day.date.gregorian.weekday.en === "Friday";
 
         const dayData = {
           date: `${parseInt(day.date.gregorian.day)}/${
@@ -52,7 +51,7 @@ async function fetchRamadanTimes(
           asr: cleanTime(day.timings.Asr),
           maghreb: cleanTime(day.timings.Maghrib),
           isha: cleanTime(day.timings.Isha),
-          special: isSpecialDay,
+          isFriday: isFriday,
         };
 
         // Convert 24-hour format to standard time format
@@ -128,7 +127,7 @@ function createPrayerTable(data) {
     // Day number cell
     const dayCell = document.createElement("td");
     dayCell.className = `prayer-table__cell prayer-table__cell--${
-      day.special ? "special" : "day"
+      day.isFriday ? "special" : "day"
     }`;
     dayCell.textContent = day.day;
     row.appendChild(dayCell);

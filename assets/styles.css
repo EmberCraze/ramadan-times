@@ -82,6 +82,10 @@ body {
   background-color: #fff0f0 !important;
 }
 
+.prayer-table__cell--friday {
+  background-color: #ffebeb !important;
+}
+
 /* Footer styles */
 .footer {
   margin-top: auto;
