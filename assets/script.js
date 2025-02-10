@@ -32,7 +32,7 @@ async function fetchRamadanTimes(
     }
 
     // Transform API data into our format
-    const transformedData = data.data.map((day) => {
+    let transformedData = data.data.map((day) => {
       try {
         // Helper function to clean time string (remove timezone)
         const cleanTime = (timeStr) => timeStr.split(" ")[0];
@@ -80,7 +80,62 @@ async function fetchRamadanTimes(
       }
     });
 
-    // Split into two halves for the two tables
+    // If we only have 29 days, fetch the first day of next month
+    if (transformedData.length === 29) {
+      console.log("Fetching additional day from next month...");
+      const nextMonthUrl = `https://api.aladhan.com/v1/hijriCalendarByCity/${year}/${
+        month + 1
+      }?city=${encodeURIComponent(city)}&country=${encodeURIComponent(
+        country
+      )}&method=3`;
+
+      const nextMonthResponse = await fetch(nextMonthUrl);
+      if (nextMonthResponse.ok) {
+        const nextMonthData = await nextMonthResponse.json();
+        if (
+          nextMonthData.data &&
+          Array.isArray(nextMonthData.data) &&
+          nextMonthData.data.length > 0
+        ) {
+          // Transform the first day of next month
+          const additionalDay = nextMonthData.data[0];
+          const cleanTime = (timeStr) => timeStr.split(" ")[0];
+          const isFriday = additionalDay.date.gregorian.weekday.en === "Friday";
+
+          const additionalDayData = {
+            date: `${parseInt(additionalDay.date.gregorian.day)}/${
+              additionalDay.date.gregorian.month.number
+            }`,
+            day: parseInt(additionalDay.date.hijri.day),
+            fajr: cleanTime(additionalDay.timings.Fajr),
+            shuruq: cleanTime(additionalDay.timings.Sunrise),
+            duhr: cleanTime(additionalDay.timings.Dhuhr),
+            asr: cleanTime(additionalDay.timings.Asr),
+            maghreb: cleanTime(additionalDay.timings.Maghrib),
+            isha: cleanTime(additionalDay.timings.Isha),
+            isFriday: isFriday,
+          };
+
+          // Format times for the additional day
+          const formatTime = (timeStr) => {
+            const [hours, minutes] = timeStr.split(":");
+            return `${hours.padStart(2, "0")}:${minutes}`;
+          };
+
+          additionalDayData.fajr = formatTime(additionalDayData.fajr);
+          additionalDayData.shuruq = formatTime(additionalDayData.shuruq);
+          additionalDayData.duhr = formatTime(additionalDayData.duhr);
+          additionalDayData.asr = formatTime(additionalDayData.asr);
+          additionalDayData.maghreb = formatTime(additionalDayData.maghreb);
+          additionalDayData.isha = formatTime(additionalDayData.isha);
+
+          // Add the additional day to our data
+          transformedData.push(additionalDayData);
+        }
+      }
+    }
+
+    // Split into two halves for the tables
     const midPoint = Math.ceil(transformedData.length / 2);
     const result = [
       transformedData.slice(0, midPoint),
