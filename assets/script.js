@@ -1,6 +1,6 @@
 // Function to fetch prayer times from the API
 async function fetchRamadanTimes(
-  year = 1446,
+  year = 1447,
   city = "Strangnas",
   country = "Sweden"
 ) {
