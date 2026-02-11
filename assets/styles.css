@@ -8,8 +8,9 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   background-color: #ffffff;
+  color: #1a1a2e;
 }
 
 /* Page layout */
@@ -18,75 +19,145 @@ body {
   height: 210mm;
   margin: 20px auto;
   background: white;
-  padding: 10mm 8mm;
+  padding: 8mm 8mm 4mm;
   display: flex;
   flex-direction: column;
 }
 
 .page__header-image {
-  width: 51%;
+  width: 48%;
   height: auto;
   margin: 0 auto;
 }
 
-/* Table styles */
+/* Table grid — two side-by-side tables */
 .table-grid {
   display: flex;
-  gap: 5px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  flex: 1;
 }
 
 .table-grid__half {
   flex: 1;
-  min-width: 300px;
+  min-width: 0;
 }
+
+/* ============================================
+   Prayer Table — Modern Clean Design
+   ============================================ */
 
 .prayer-table {
   width: 100%;
-  border-collapse: separate;
-  border-spacing: 1.5px;
+  border-collapse: collapse;
+  font-size: 9.5pt;
+  line-height: 1.3;
+  table-layout: fixed;
 }
 
-.prayer-table__cell {
+/* Header row */
+.prayer-table thead th {
+  background: #1a3c5e;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 8pt;
+  letter-spacing: 0.5px;
+  padding: 6px 4px;
   text-align: center;
-  padding: 4px 3px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: #ffffff;
-  position: relative;
-  overflow: hidden;
-  font-size: 10pt;
-  line-height: 1.2;
-}
-
-.prayer-table__header {
-  background-color: #f8f9fa !important;
-  font-weight: bold;
+  border: none;
   white-space: nowrap;
 }
 
-.prayer-table__cell--asr {
-  background-color: #e6f3ff !important;
+.prayer-table thead th:first-child {
+  border-radius: 6px 0 0 0;
 }
 
-.prayer-table__cell--maghreb {
-  background-color: #ffe6e6 !important;
+.prayer-table thead th:last-child {
+  border-radius: 0 6px 0 0;
 }
 
+/* Body cells */
+.prayer-table tbody td {
+  text-align: center;
+  padding: 4.5px 3px;
+  border-bottom: 1px solid #e8edf2;
+  font-variant-numeric: tabular-nums;
+  font-size: 9.5pt;
+}
+
+/* Zebra striping — subtle alternating rows */
+.prayer-table tbody tr:nth-child(even) {
+  background-color: #f6f8fb;
+}
+
+.prayer-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* Last row rounded corners */
+.prayer-table tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 6px;
+}
+
+.prayer-table tbody tr:last-child td:last-child {
+  border-radius: 0 0 6px 0;
+}
+
+.prayer-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Day number column */
 .prayer-table__cell--day {
-  background-color: #f0f8ff !important;
+  font-weight: 600;
+  color: #1a3c5e;
 }
 
-.prayer-table__cell--special {
-  background-color: #fff0f0 !important;
+/* Fajr column — subtle dawn accent */
+.prayer-table__cell--fajr {
+  background-color: rgba(79, 70, 153, 0.08) !important;
+  font-weight: 600;
 }
 
-.prayer-table__cell--friday {
-  background-color: #ffebeb !important;
+/* Asr column — soft warm accent */
+.prayer-table__cell--asr {
+  background-color: rgba(245, 166, 35, 0.08) !important;
 }
 
-/* Footer styles */
+/* Maghreb (Iftar) column — prominent warm highlight */
+.prayer-table__cell--maghreb {
+  background-color: rgba(214, 69, 65, 0.10) !important;
+  font-weight: 700;
+  color: #b5342e;
+}
+
+/* ---- Friday row highlight ---- */
+.prayer-table tbody tr.prayer-table__row--friday {
+  background-color: #eef5ed !important;
+}
+
+.prayer-table tbody tr.prayer-table__row--friday td {
+  border-bottom-color: #c5dbc2;
+}
+
+.prayer-table__cell--friday-marker {
+  color: #2d6a2e;
+  font-weight: 700;
+}
+
+/* Date column styling */
+.prayer-table__cell--date {
+  font-weight: 500;
+  color: #555;
+  font-size: 9pt;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
 .footer {
   margin-top: auto;
   position: relative;
@@ -110,14 +181,17 @@ body {
   height: auto;
 }
 
-/* Screen-only styles */
+/* ============================================
+   Screen-only styles
+   ============================================ */
 @media screen {
   body {
-    background: #f0f0f0;
+    background: #e8edf2;
     padding: 20px;
   }
 
   .page {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
   }
 }
