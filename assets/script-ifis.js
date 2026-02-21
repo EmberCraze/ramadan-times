@@ -47,6 +47,7 @@ function createPrayerTable(data) {
   ["Datum", "Dag", "Fajr", "Shuruq", "Duhr", "Asr", "Maghreb", "Isha"].forEach(
     (text) => {
       const th = document.createElement("th");
+      th.className = "prayer-table__cell prayer-table__header";
       th.textContent = text;
       headerRow.appendChild(th);
     }
@@ -59,36 +60,30 @@ function createPrayerTable(data) {
   data.forEach((day) => {
     const row = document.createElement("tr");
 
-    // Add Friday row class
-    if (day.isFriday) {
-      row.className = "prayer-table__row--friday";
-    }
-
     // Date cell
     const dateCell = document.createElement("td");
-    dateCell.className = "prayer-table__cell--date";
+    dateCell.className = "prayer-table__cell";
     dateCell.textContent = day.date;
     row.appendChild(dateCell);
 
     // Day number cell (Hijri day)
     const dayCell = document.createElement("td");
-    dayCell.className = day.isFriday
-      ? "prayer-table__cell--day prayer-table__cell--friday-marker"
-      : "prayer-table__cell--day";
+    dayCell.className = `prayer-table__cell prayer-table__cell--${
+      day.isFriday ? "special" : "day"
+    }`;
     dayCell.textContent = day.day;
     row.appendChild(dayCell);
 
-    // Prayer time cells with per-column styling
-    const prayerColumns = ["fajr", "shuruq", "duhr", "asr", "maghreb", "isha"];
-    prayerColumns.forEach((prayer) => {
+    // Prayer time cells
+    ["fajr", "shuruq", "duhr", "asr", "maghreb", "isha"].forEach((prayer) => {
       const cell = document.createElement("td");
-      const classes = [];
-
-      if (prayer === "fajr")    classes.push("prayer-table__cell--fajr");
-      if (prayer === "asr")     classes.push("prayer-table__cell--asr");
-      if (prayer === "maghreb") classes.push("prayer-table__cell--maghreb");
-
-      cell.className = classes.join(" ");
+      cell.className = `prayer-table__cell${
+        prayer === "asr"
+          ? " prayer-table__cell--asr"
+          : prayer === "maghreb"
+          ? " prayer-table__cell--maghreb"
+          : ""
+      }`;
       cell.textContent = day[prayer];
       row.appendChild(cell);
     });

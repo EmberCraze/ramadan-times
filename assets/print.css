@@ -15,7 +15,7 @@ body {
 
 .page {
   margin: 0;
-  padding: 8mm 8mm 4mm;
+  padding: 10mm 8mm;
   width: 297mm;
   height: 210mm;
   page-break-after: always;
@@ -23,57 +23,15 @@ body {
 
 .prayer-table {
   page-break-inside: avoid;
+  border-spacing: 1.5px !important;
 }
 
-.prayer-table thead th {
-  background: #1a3c5e !important;
-  color: #ffffff !important;
-  -webkit-print-color-adjust: exact !important;
-  print-color-adjust: exact !important;
-  padding: 6px 4px !important;
-}
-
-.prayer-table tbody td {
-  padding: 4.5px 3px !important;
-  font-size: 9.5pt !important;
-  line-height: 1.3 !important;
-  border-bottom: 1px solid #e8edf2 !important;
-}
-
-/* Ensure zebra striping prints */
-.prayer-table tbody tr:nth-child(even) {
-  background-color: #f6f8fb !important;
-  -webkit-print-color-adjust: exact !important;
-  print-color-adjust: exact !important;
-}
-
-/* Ensure Fajr column prints */
-.prayer-table__cell--fajr {
-  background-color: rgba(79, 70, 153, 0.08) !important;
-  -webkit-print-color-adjust: exact !important;
-  print-color-adjust: exact !important;
-}
-
-/* Ensure Asr column prints */
-.prayer-table__cell--asr {
-  background-color: rgba(245, 166, 35, 0.08) !important;
-  -webkit-print-color-adjust: exact !important;
-  print-color-adjust: exact !important;
-}
-
-/* Ensure Maghreb column prints */
-.prayer-table__cell--maghreb {
-  background-color: rgba(214, 69, 65, 0.10) !important;
-  color: #b5342e !important;
-  -webkit-print-color-adjust: exact !important;
-  print-color-adjust: exact !important;
-}
-
-/* Ensure Friday row prints */
-.prayer-table tbody tr.prayer-table__row--friday {
-  background-color: #eef5ed !important;
-  -webkit-print-color-adjust: exact !important;
-  print-color-adjust: exact !important;
+.prayer-table__cell {
+  border: 1px solid #ddd !important;
+  padding: 4px 3px !important;
+  font-size: 10pt !important;
+  line-height: 1.2 !important;
+  border-radius: 4px !important;
 }
 
 .footer {
@@ -82,4 +40,12 @@ body {
 
 .footer__zakat-image {
   max-width: 100px !important;
+}
+
+/* Ensure backgrounds print */
+.prayer-table__cell--asr,
+.prayer-table__cell--maghreb,
+.prayer-table__cell--day,
+.prayer-table__cell--special {
+  -webkit-print-color-adjust: exact !important;
 }
