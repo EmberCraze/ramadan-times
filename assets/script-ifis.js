@@ -37,6 +37,14 @@ const ifisPrayerData = [
   { date: "20/3", day: 30, fajr: "03:32", shuruq: "05:48", duhr: "12:05", asr: "15:10", maghreb: "18:11", isha: "20:09", isFriday: true  },
 ];
 
+// Get today's date in D/M format (e.g., "22/2" for February 22)
+function getTodayDateString() {
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1; // Months are 0-indexed
+  return `${day}/${month}`;
+}
+
 function createPrayerTable(data) {
   const table = document.createElement("table");
   table.className = "prayer-table";
@@ -55,10 +63,18 @@ function createPrayerTable(data) {
   thead.appendChild(headerRow);
   table.appendChild(thead);
 
+  // Get today's date for highlighting
+  const todayDate = getTodayDateString();
+
   // Create body
   const tbody = document.createElement("tbody");
   data.forEach((day) => {
     const row = document.createElement("tr");
+
+    // Check if this is today's row and add highlight class
+    if (day.date === todayDate) {
+      row.classList.add("prayer-table__row--today");
+    }
 
     // Date cell
     const dateCell = document.createElement("td");

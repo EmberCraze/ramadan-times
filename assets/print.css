@@ -60,3 +60,25 @@ body {
 .prayer-table__cell--special {
   -webkit-print-color-adjust: exact !important;
 }
+
+/* Hide today highlight in print - restore original cell colors */
+.prayer-table__row--today .prayer-table__cell {
+  background-color: #ffffff !important;
+  font-weight: normal !important;
+}
+
+.prayer-table__row--today .prayer-table__cell--day {
+  background-color: #f0f8ff !important;
+}
+
+.prayer-table__row--today .prayer-table__cell--special {
+  background-color: #fff0f0 !important;
+}
+
+.prayer-table__row--today .prayer-table__cell--asr {
+  background-color: #e6f3ff !important;
+}
+
+.prayer-table__row--today .prayer-table__cell--maghreb {
+  background-color: #ffe6e6 !important;
+}
