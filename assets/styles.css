@@ -12,15 +12,16 @@ body {
   background-color: #ffffff;
 }
 
-/* Page layout */
+/* Page layout - base styles (mobile-first) */
 .page {
-  width: 297mm;
-  height: 210mm;
-  margin: 20px auto;
+  width: 100%;
+  max-width: 297mm;
+  margin: 0 auto;
   background: white;
-  padding: 10mm 8mm;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+  min-height: auto;
 }
 
 .page__header-image {
@@ -128,5 +129,118 @@ body {
 
   .page {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS (screen only)
+   Print styles are handled separately in print.css
+   ============================================ */
+
+/* Desktop: Fixed A4 landscape layout */
+@media screen and (min-width: 1200px) {
+  .page {
+    width: 297mm;
+    height: 210mm;
+    margin: 20px auto;
+    padding: 10mm 8mm;
+  }
+}
+
+/* Tablet: Fluid width, side-by-side tables */
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .page {
+    max-width: 900px;
+    padding: 15px;
+  }
+
+  .page__header-image {
+    width: 60%;
+  }
+
+  .prayer-table__cell {
+    font-size: 9pt;
+    padding: 3px 2px;
+  }
+
+  .ramadan-title {
+    font-size: 11pt;
+  }
+}
+
+/* Mobile: Stacked tables */
+@media screen and (max-width: 767px) {
+  body {
+    padding: 10px;
+  }
+
+  .page {
+    padding: 10px;
+    box-shadow: none;
+  }
+
+  .page__header-image {
+    width: 80%;
+  }
+
+  .table-grid {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .table-grid__half {
+    min-width: 100%;
+  }
+
+  .prayer-table__cell {
+    font-size: 8pt;
+    padding: 2px 1px;
+  }
+
+  .ramadan-title {
+    font-size: 10pt;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .footer__zakat-image {
+    max-width: 80px;
+  }
+}
+
+/* Small mobile: Minimal padding, smallest fonts */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 5px;
+  }
+
+  .page {
+    padding: 8px;
+  }
+
+  .page__header-image {
+    width: 95%;
+  }
+
+  .prayer-table__cell {
+    font-size: 7pt;
+    padding: 1px;
+    border-radius: 2px;
+  }
+
+  .prayer-table {
+    border-spacing: 1px;
+  }
+
+  .ramadan-title {
+    font-size: 9pt;
+  }
+
+  .footer__zakat-image {
+    max-width: 60px;
   }
 }
