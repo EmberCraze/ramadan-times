@@ -11,14 +11,25 @@ body {
   padding: 0;
   print-color-adjust: exact;
   -webkit-print-color-adjust: exact;
+  overflow: hidden;
 }
 
 .page {
   margin: 0;
-  padding: 10mm 8mm;
+  padding: 8mm 8mm;
   width: 297mm;
   height: 210mm;
-  page-break-after: always;
+  page-break-after: avoid;
+  overflow: hidden;
+}
+
+.ramadan-title {
+  font-size: 11pt !important;
+  margin-bottom: 2px !important;
+}
+
+.table-grid {
+  margin-bottom: 5px !important;
 }
 
 .prayer-table {

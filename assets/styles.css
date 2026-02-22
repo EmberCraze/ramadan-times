@@ -29,6 +29,15 @@ body {
   margin: 0 auto;
 }
 
+/* Ramadan title */
+.ramadan-title {
+  text-align: right;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 2px;
+}
+
 /* Table styles */
 .table-grid {
   display: flex;
